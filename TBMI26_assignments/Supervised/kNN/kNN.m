@@ -17,32 +17,13 @@ numClasses = length(classes);
 for i = 1:length(X)
 
     currX = X(:, i);
-    nearest = [zeros(2, k); ones(1, k)*inf; zeros(1, k)];
 
     squared = (Xt - currX).^2;
-    dists = squared(1, :) + squared(2, :);
+    dists = sum(squared);
 
-    ksmallest = mink(dists, k);
+    [ksmallest, indices] = mink(dists, k);
 
-    smallest_ind = find();
-    % TODO DO SHIT HERE
-
-    % for j = 1:length(Xt);
-    %     dist = norm(currX - Xt(:, j));
-    %     
-
-
-    %     % for l = 1:k
-    %     %     if dist < nearest(3, l)
-    %     %         nearest(:, l) = [Xt(:, j); dist; Lt(j)];
-    %     %         break;
-    %     %     end
-    %     % end
-
-    % end
-
-    labelsOut(i) = mode(nearest(4, :));
-
+    labelsOut(i) = mode(Lt(indices));
 end
 
 end

@@ -11,7 +11,9 @@
 
 dataSetNr = 2; % Change this to load new data 
 
-[X, D, L] = loadDataSet( dataSetNr );
+[X, D, L] = loadDataSet(dataSetNr);
+
+numNeurons = length(unique(L));
 
 %% Select a subset of the training features
 
@@ -25,21 +27,23 @@ selectAtRandom = true; % true = select features at random, false = select the fi
 % XBin1 = Xt{1};
 %% Modify the X Matrices so that a bias is added
 
+[h, w] = size(Xt{1});
+
 % The Training Data
-Xtraining = [];
+Xtraining = [ones(1, w); Xt{1}];
 
 % The Test Data
-Xtest = [];
+Xtest = [ones(1, w); Xt{2}];
 
 
 %% Train your single layer network
-% Note: You nned to modify trainSingleLayer() in order to train the network
+% Note: You need to modify trainSingleLayer() in order to train the network
 
 numIterations = 40000; % Change this, Numner of iterations (Epochs)
 learningRate = 0.00005; % Change this, Your learningrate
-W0 = 0; % Change this, Initiate your weight matrix W
+W0 = rand(numNeurons, numNeurons + 1); % Change this, Initiate your weight matrix W
 
-[W, trainingError, testError ] = trainSingleLayer(Xtraining,Dt{1},Xtest,Dt{2}, W0,numIterations, learningRate );
+[W, trainingError, testError] = trainSingleLayer(Xtraining,Dt{1},Xtest,Dt{2}, W0,numIterations, learningRate );
 
 % Plot errors
 figure(1101)

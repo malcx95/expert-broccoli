@@ -10,6 +10,7 @@
 dataSetNr = 1; % Change this to load new data 
 
 [X, D, L] = loadDataSet( dataSetNr );
+numNeurons = unique(L);
 
 %% Select a subset of the training features
 
@@ -36,8 +37,8 @@ Xtest = [];
 numHidden = 7; % Change this, Number of hidde neurons 
 numIterations = 800; % Change this, Numner of iterations (Epochs)
 learningRate = 0.001; % Change this, Your learningrate
-W0 = 0; % Change this, Initiate your weight matrix W
-V0 = 0; % Change this, Initiate your weight matrix V
+W0 = rand(numNeurons, numNeurons + 1); % Change this, Initiate your weight matrix W
+V0 = rand(numHidden, numHidden + 1); % Change this, Initiate your weight matrix V
 
 %
 tic

@@ -1,4 +1,4 @@
-function [Wout, trainingError, testError ] = trainSingleLayer(Xt,Dt,Xtest,Dtest, W0,numIterations, learningRate )
+function [Wout, trainingError, testError] = trainSingleLayer(Xt,Dt,Xtest,Dtest, W0,numIterations, learningRate)
 %TRAINSINGLELAYER Trains the network (Learning)
 %   Inputs:
 %               X* - Trainin/test features (matrix)
@@ -29,7 +29,7 @@ testError(1) = sum(sum((Ytest - Dtest).^2))/Ntest;
 for n = 1:numIterations
     Y = Wout*Xt;
     
-    grad_w =0;
+    grad_w = 2*(Y - Dt)*Xt';
     
     Wout = Wout - learningRate*grad_w;
     trainingError(1+n) = sum(sum((Wout*Xt - Dt).^2))/Nt;
