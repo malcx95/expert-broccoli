@@ -35,18 +35,53 @@
 \begin{document}
 \title{Lab 1 --- Fundamental Signal Processing}
 \author{Malcolm Vigren, \textit{malvi108} \\
-        David Pop, \textit{davpo041}}
+        Emil Segerbäck, \textit{emise935}}
 
 \maketitle
 
-\section{Introduction}
+Inställningar för 1:
+numHidden = 8
+numIterations = 1000
+learningRate = 0.001
 
-\subsection{Theory}
+Inställningar för 2:
+numHidden = 10
+numIterations = 4000
+learningRate = 0.002
 
-\subsection{Method}
+Inställningar för 3:
+numHidden = 16
+numIterations = 1200
+learningRate = 0.004
 
-\subsection{Results}
+\section{Overview}
+Dataset 1 can be classified using a linear classifier. However, the other datasets are not
+linearly separable.
+
+\subsection{Downsampling}
+Downsampling the data removes noise from the images which prevents the network from trying
+to learn the noise.
+
+\subsection{kNN}
+We used the \texttt{mink} function in matlab to find the closest k data points and then we
+use \texttt{mode} to check for the most frequent kind.
+
+\subsection{Draws in kNN}
+Because \texttt{mode} returns the smallest element in a case of a tie that will also
+happen to our algorithm.
+
+\subsection{Selection of best k}
+We looped for all k between 1 and 100 and checked for which values it worked best.
+
+\subsection{Backpropagation}
+
+
+\subsection{Training}
+
+\subsection{Solution}
 
 \subsection{Discussion}
+
+\subsection{Improvements}
 
 \end{document}
