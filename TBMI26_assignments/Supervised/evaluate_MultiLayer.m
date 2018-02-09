@@ -36,7 +36,7 @@ Xtest = [ones(1, w); Xt{2}];
 % Note: You nned to modify trainSingleLayer() in order to train the network
 
 numHidden = 10; % Change this, Number of hidde neurons 
-numIterations = 5000; % Change this, Numner of iterations (Epochs)
+numIterations = 4000; % Change this, Numner of iterations (Epochs)
 learningRate = 0.002; % Change this, Your learningrate
 [xh, xw] = size(Xtraining);
 W0 = rand(numHidden, xh)*0.01; % Change this, Initiate your weight matrix W
@@ -44,7 +44,7 @@ V0 = rand(numNeurons, numHidden)*0.01; % Change this, Initiate your weight matri
 
 %
 tic
-[W,V, trainingError, testError ] = trainMultiLayer(Xtraining,Dt{1},Xtest,Dt{2}, W0,V0,numIterations, learningRate );
+[W,V, trainingError, testError] = trainMultiLayer(Xtraining,Dt{1},Xtest,Dt{2}, W0,V0,numIterations, learningRate );
 trainingTime = toc;
 %% Plot errors
 figure(1101)
