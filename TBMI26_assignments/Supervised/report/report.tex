@@ -9,7 +9,6 @@
 \usepackage{xcolor}
 \usepackage{color}
 \usepackage{url}
-\usepackage{caption}
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
@@ -44,42 +43,29 @@ numHidden = 8
 numIterations = 1000
 learningRate = 0.001
 
-Inställningar för 2:
-numHidden = 10
-numIterations = 4000
-learningRate = 0.002
-
-Inställningar för 3:
-numHidden = 16
-numIterations = 1200
-learningRate = 0.004
-
-Inställningar för 4:
-numHidden = 100
-numIterations = 4000
-learningRate = 0.004
-
 \section{Overview}
-Dataset 1 can be classified using a linear classifier. However, the other datasets are not
-linearly separable.
+Dataset 1 can be classified using a linear classifier. However, the
+other datasets are not linearly separable.
 
-\subsection{Downsampling}
-Downsampling the data removes noise from the images which prevents the network from trying
-to learn the noise.
+\section{Downsampling}
+Downsampling the data removes noise from the images which prevents the
+network from trying to learn the noise.
 
-\subsection{kNN}
-We used the \texttt{mink} function in matlab to find the closest k data points and then we
-use \texttt{mode} to check for the most frequent kind.
+\section{kNN}
+We used the \texttt{mink} function in matlab to find the closest k
+data points and then we use \texttt{mode} to check for the most
+frequent kind.
 
-\subsection{Draws in kNN}
-Because \texttt{mode} returns the smallest element in a case of a tie that will also
-happen to our algorithm.
+\section{Draws in kNN}
+Because \texttt{mode} returns the smallest element in a case of a tie
+that will also happen to our algorithm.
 
-\subsection{Selection of best k}
-We looped for all k between 1 and 100 and checked for which values it worked best.
+\section{Selection of best k}
+We looped for all k between 1 and 100 and checked for which values it
+worked best.
 
-\subsection{Backpropagation}
-\subsubsection{Single layer}
+\section{Backpropagation}
+\subsection{Single layer}
 
 The gradient of the cost function was evaluated to
 
@@ -131,12 +117,30 @@ where $s$ is
 
 and $z_j = \sigma(s_j)$
 
-\subsection{Training}
+\section{Training}
 
-\subsection{Solution}
+For the other datasets we chose a multi layer network because they
+require a non linear classifier.
 
-\subsection{Discussion}
+Inställningar för 2:
+numHidden = 10
+numIterations = 4000
+learningRate = 0.002
 
-\subsection{Improvements}
+Inställningar för 3:
+numHidden = 16
+numIterations = 1200
+learningRate = 0.004
+
+Inställningar för 4:
+numHidden = 100
+numIterations = 4000
+learningRate = 0.004
+
+\section{Solution}
+
+\section{Discussion}
+
+\section{Improvements}
 
 \end{document}
