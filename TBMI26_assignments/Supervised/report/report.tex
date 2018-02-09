@@ -139,8 +139,8 @@ where $q_j = \sigma(a_j)$.
 
 \subsection{Dataset 1}
 
-We chose the single-layer network for dataset 1, since this 
-is easily linearly separable. We used 200 iterations and a learning rate of
+We chose the single-layer network for dataset 1, since this is easily
+linearly separable. We used 200 iterations and a learning rate of
 0.0001. Figure~\ref{fig:res1} shows the result of this.
 
 \begin{figure}
@@ -151,14 +151,16 @@ is easily linearly separable. We used 200 iterations and a learning rate of
 
 \subsection{Dataset 2}
 
-Here we used the multilayer network with 10 hidden neurons, 4000 iterations and a
-learning rate of 0.002. A multilayer network is required here, since the data
-is not linearly separable with only 2 dimensions. Having more hidden neurons
-than input neurons increases the dimensionality of the problem, making it
-possible to separate the classes.
+Here we used a multilayer network with 10 hidden neurons, 4000
+iterations and a learning rate of 0.002. A multilayer network is
+required here, since the data is not linearly separable with only 2
+dimensions. Having more hidden neurons than input neurons increases
+the dimensionality of the problem, making it possible to separate the
+classes.
 
-The exact parameters were found through trial and error. They were chosen such
-that we got high accuracy without taking too long to train.
+The exact parameters were found through trial and error. They were
+chosen such that we got high accuracy without taking too long to
+train.
 
 \begin{figure}
     \includegraphics[width=13cm]{dataset1res.png}
@@ -174,18 +176,25 @@ numHidden = 10
 numIterations = 4000
 learningRate = 0.002
 
+\subsection{Dataset 3}
+
+Here we used a multilayer network with 16 hidden neurons, 12000
+iterations and a learning rate of 0.004.
+
 Inställningar för 3:
 numHidden = 16
 numIterations = 1200
 learningRate = 0.004
 
+\subsection{Dataset 4}
+
+Here we used a multilayer network with 100 hidden neurons, 4000
+iterations and a learning rate of 0.004.
+
 Inställningar för 4:
 numHidden = 100
 numIterations = 4000
 learningRate = 0.004
-
-\subsection{Dataset 3}
-\subsection{Dataset 4}
 
 \subsection{Solution}
 
