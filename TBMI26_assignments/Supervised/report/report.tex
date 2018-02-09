@@ -1,4 +1,4 @@
-\documentclass{IEEEtran}
+\documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{listings}
 \usepackage{cite}
@@ -96,7 +96,8 @@ where $s_j$ is
   s_j = \sum_{k}{w_{kj}h_k}
 \end{equation}
 
-and $z_j = \sigma(s_j)$. The partial derivatives were evaluated to
+and $z_j = s_j$, since we don't use an activation function.
+The partial derivatives were evaluated to
 
 \begin{equation}
     \frac{\partial \epsilon}{\partial z_j} = 2\sum_j(y_j - z_j)
@@ -112,26 +113,52 @@ and $z_j = \sigma(s_j)$. The partial derivatives were evaluated to
 
 \subsubsection{Multi layer}
 
-The gradient of the hidden
+The gradient of the weights of the output layer was evaluated as:
 
 \begin{equation}
-  \frac{\partial \epsilon}{\partial v_{kn}} =
+  \frac{\partial \epsilon}{\partial w_{ij}} =
+  \frac{\partial \epsilon}{\partial z_j}
+  \frac{\partial z_j}{\partial s_j}
+  \frac{\partial s_j}{\partial w_{ij}}
+\end{equation}
+
+This is similar to the gradient in the single-layer-network, where $h_i$
+in the last partial derivative is replaced with the output from the hidden
+layer:
+
+\begin{equation}
+    \frac{\partial s_j}{\partial w_{ij}} = \sigma(a_j)
+\end{equation}
+
+where $a_j$ is 
+
+\begin{equation}
+    a_j = \sum_{n=1}^Q v_{jn}h_n
+\end{equation}
+
+The gradient of the hidden layer was evaluated as follows:
+
+\begin{equation}
+  \frac{\partial \epsilon}{\partial v_{jn}} =
   \frac{\partial \epsilon}{\partial z_m}
   \frac{\partial z_m}{\partial s_m}
-  \frac{\partial s_m}{\partial q_k}
-  \frac{\partial q_k}{\partial a_k}
-  \frac{\partial a_k}{\partial v_{kn}}
+  \frac{\partial s_m}{\partial q_j}
+  \frac{\partial q_j}{\partial a_j}
+  \frac{\partial a_j}{\partial v_{jn}}
 \end{equation}
 
-where $s$ is
-
-\begin{equation}
-  s_j = \sum_{k}{w_{kj}h_k}
-\end{equation}
-
-and $z_j = \sigma(s_j)$
+where $q_j = \sigma(a_j)$.
 
 \subsection{Training}
+
+We chose the single-layer network for dataset 1, since this 
+is easily linearly separable. We used 200 iterations and a learning rate of
+0.0001.
+
+\begin{figure}
+    \includegraphics[width=13cm]{dataset1res.png}
+    \caption{Results for dataset 1}
+\end{figure}
 
 \subsection{Solution}
 

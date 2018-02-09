@@ -7,7 +7,7 @@
 % 3 = dot cloud 3
 % 4 = OCR data
 
-dataSetNr = 4; % Change this to load new data 
+dataSetNr = 2; % Change this to load new data 
 
 [X, D, L] = loadDataSet( dataSetNr );
 numNeurons = length(unique(L));
@@ -35,9 +35,9 @@ Xtest = [ones(1, w); Xt{2}];
 %% Train your single layer network
 % Note: You nned to modify trainSingleLayer() in order to train the network
 
-numHidden = 100; % Change this, Number of hidde neurons 
-numIterations = 3000; % Change this, Numner of iterations (Epochs)
-learningRate = 0.004; % Change this, Your learningrate
+numHidden = 10; % Change this, Number of hidde neurons 
+numIterations = 5000; % Change this, Numner of iterations (Epochs)
+learningRate = 0.002; % Change this, Your learningrate
 [xh, xw] = size(Xtraining);
 W0 = rand(numHidden, xh)*0.01; % Change this, Initiate your weight matrix W
 V0 = rand(numNeurons, numHidden)*0.01; % Change this, Initiate your weight matrix V
