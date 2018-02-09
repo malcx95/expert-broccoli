@@ -9,7 +9,7 @@
 % 3 = dot cloud 3
 % 4 = OCR data
 
-dataSetNr = 4; % Change this to load new data 
+dataSetNr = 2; % Change this to load new data 
 
 [X, D, L] = loadDataSet(dataSetNr);
 

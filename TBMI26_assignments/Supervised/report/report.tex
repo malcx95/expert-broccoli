@@ -80,6 +80,9 @@ We looped for all k between 1 and 100 and checked for which values it worked bes
 
 \subsection{Backpropagation}
 \subsubsection{Single layer}
+
+The gradient of the cost function was evaluated to
+
 \begin{equation}
   \frac{\partial \epsilon}{\partial w_{ij}} =
   \frac{\partial \epsilon}{\partial z_j}
@@ -87,15 +90,30 @@ We looped for all k between 1 and 100 and checked for which values it worked bes
   \frac{\partial s_j}{\partial w_{ij}}
 \end{equation}
 
-where $s$ is
+where $s_j$ is
 
 \begin{equation}
   s_j = \sum_{k}{w_{kj}h_k}
 \end{equation}
 
-and $z_j = \sigma(s_j)$
+and $z_j = \sigma(s_j)$. The partial derivatives were evaluated to
+
+\begin{equation}
+    \frac{\partial \epsilon}{\partial z_j} = 2\sum_j(y_j - z_j)
+\end{equation}
+
+\begin{equation}
+    \frac{\partial z_j}{\partial s_j} = 1
+\end{equation}
+
+\begin{equation}
+    \frac{\partial s_j}{\partial w_{ij}} = h_i
+\end{equation}
 
 \subsubsection{Multi layer}
+
+The gradient of the hidden
+
 \begin{equation}
   \frac{\partial \epsilon}{\partial w_{ij}} =
   \frac{\partial \epsilon}{\partial z_j}
