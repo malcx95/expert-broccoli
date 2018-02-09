@@ -115,10 +115,12 @@ and $z_j = \sigma(s_j)$. The partial derivatives were evaluated to
 The gradient of the hidden
 
 \begin{equation}
-  \frac{\partial \epsilon}{\partial w_{ij}} =
-  \frac{\partial \epsilon}{\partial z_j}
-  \frac{\partial z_j}{\partial s_j}
-  \frac{\partial s_j}{\partial w_{ij}}
+  \frac{\partial \epsilon}{\partial v_{kn}} =
+  \frac{\partial \epsilon}{\partial z_m}
+  \frac{\partial z_m}{\partial s_m}
+  \frac{\partial s_m}{\partial q_k}
+  \frac{\partial q_k}{\partial a_k}
+  \frac{\partial a_k}{\partial v_{kn}}
 \end{equation}
 
 where $s$ is
