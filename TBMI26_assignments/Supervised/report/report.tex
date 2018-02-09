@@ -32,7 +32,7 @@
 \newcommand{\est}[1]{#1_{\text{est}}}
 
 \begin{document}
-\title{Lab 1 --- Fundamental Signal Processing}
+\title{Lab 1 --- Supervised learning}
 \author{Malcolm Vigren, \textit{malvi108} \\
         Emil Segerbäck, \textit{emise935}}
 
@@ -65,6 +65,9 @@ We looped for all k between 1 and 100 and checked for which values it
 worked best.
 
 \section{Backpropagation}
+
+This section describes how the backpropagation was implemented.
+
 \subsection{Single layer}
 
 The gradient of the cost function was evaluated to
@@ -97,7 +100,7 @@ The partial derivatives were evaluated to
     \frac{\partial s_j}{\partial w_{ij}} = h_i
 \end{equation}
 
-\subsubsection{Multi layer}
+\subsection{Multi layer}
 
 The gradient of the weights of the output layer was evaluated as:
 
@@ -144,14 +147,14 @@ is easily linearly separable. We used 200 iterations and a learning rate of
 0.0001. Figure~\ref{fig:res1} shows the result of this.
 
 \begin{figure}
+    \label{fig:res1}
     \includegraphics[width=13cm]{dataset1res.png}
     \caption{Results for dataset 1}
-    \label{fig:res1}
 \end{figure}
 
 \subsection{Dataset 2}
 
-Here we used the multilayer network with 10 hidden neurons, 4000 iterations and a
+Here we used the multi-layer network with 10 hidden neurons, 4000 iterations and a
 learning rate of 0.002. A multilayer network is required here, since the data
 is not linearly separable with only 2 dimensions. Having more hidden neurons
 than input neurons increases the dimensionality of the problem, making it
@@ -159,35 +162,64 @@ possible to separate the classes.
 
 The exact parameters were found through trial and error. They were chosen such
 that we got high accuracy without taking too long to train.
+Figure~\ref{fig:res2} shows the result of this.
 
 \begin{figure}
-    \includegraphics[width=13cm]{dataset1res.png}
+    \includegraphics[width=13cm]{dataset2res.png}
     \caption{Results for dataset 2}
-    \label{fig:res1}
+    \label{fig:res2}
 \end{figure}
+
+\subsection{Dataset 3}
+
+A multi-layer network with 20 hidden neurons was used here, trained with 12 000
+iterations at a learning rate of 0.004. Many iterations were used here, since
+both the training error and testing error kept decreasing for quite a while
+until it stopped improving.
 
 For the other datasets we chose a multi layer network because they
 require a non linear classifier.
 
-Inställningar för 2:
-numHidden = 10
-numIterations = 4000
-learningRate = 0.002
+Figure~\ref{fig:res3} shows the result of this.
 
-Inställningar för 3:
-numHidden = 16
-numIterations = 1200
-learningRate = 0.004
+\begin{figure}
+    \includegraphics[width=13cm]{dataset3res.png}
+    \caption{Results for dataset 3}
+    \label{fig:res3}
+\end{figure}
 
-Inställningar för 4:
-numHidden = 100
-numIterations = 4000
-learningRate = 0.004
+% Inställningar för 2:
+% numHidden = 10
+% numIterations = 4000
+% learningRate = 0.002
+% 
+% Inställningar för 3:
+% numHidden = 20
+% numIterations = 12000
+% learningRate = 0.004
+% 
+% Inställningar för 4:
+% numHidden = 100
+% numIterations = 4000
+% learningRate = 0.004
 
-\subsection{Dataset 3}
 \subsection{Dataset 4}
 
-\subsection{Solution}
+Again, a multi-layer network was used here. Due to the high dimensionality of
+the input space, 100 hidden neurons was used. The number of
+iterations did however not need to be higher than 4000, since the test error
+did not get much smaller beyond this point, and the network already took quite
+a long time to train.
+
+Figure~\ref{fig:res4} shows the result of this.
+
+\begin{figure}
+    \includegraphics[width=13cm]{dataset4res.png}
+    \caption{Results for dataset 4}
+    \label{fig:res4}
+\end{figure}
+
+\section{Non-generalizable solution}
 
 \section{Discussion}
 
