@@ -38,11 +38,6 @@
 
 \maketitle
 
-Inställningar för 1:
-numHidden = 8
-numIterations = 1000
-learningRate = 0.001
-
 \section{Overview}
 Dataset 1 can be classified using a linear classifier. However, the
 other datasets are not linearly separable.
@@ -187,21 +182,6 @@ Figure~\ref{fig:res3} shows the result of this.
     \label{fig:res3}
 \end{figure}
 
-% Inställningar för 2:
-% numHidden = 10
-% numIterations = 4000
-% learningRate = 0.002
-% 
-% Inställningar för 3:
-% numHidden = 20
-% numIterations = 12000
-% learningRate = 0.004
-% 
-% Inställningar för 4:
-% numHidden = 100
-% numIterations = 4000
-% learningRate = 0.004
-
 \subsection{Dataset 4}
 
 Again, a multi-layer network was used here. Due to the high dimensionality of
@@ -220,7 +200,50 @@ Figure~\ref{fig:res4} shows the result of this.
 
 \section{Non-generalizable solution}
 
+To generate a non-generalizable solution for dataset 3, the number of training
+examples was reduced to 10. This caused the test error to not decrease as the
+training error decreased, as seen in Figure~\ref{fig:errornongen}, since the
+network is over-fitted to the little data it has available. The fact that the
+data also only contains examples of one class further makes it so that it has
+no reason to not classify everything as one class. This can be seen in 
+Figure~\ref{fig:trainnongen}, where it correctly classifies the few training
+examples. However, this of course doesn't generalize well to examples it hasn't
+seen before, as shown in Figure~\ref{fig:testnongen}.
+
+\begin{figure}
+    \includegraphics[width=13cm]{errornongen.png}
+    \caption{Plot of errors for non-generalizable solution}
+    \label{fig:errornongen}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=13cm]{trainingresnongen.png}
+    \caption{Training results for non-generalizable solution}
+    \label{fig:trainnongen}
+\end{figure}
+
+\begin{figure}
+    \includegraphics[width=13cm]{testresnongen.png}
+    \caption{Test results for non-generalizable solution}
+    \label{fig:testnongen}
+\end{figure}
+
 \section{Discussion}
+
+kNN gives very good performance on all datasets, and is fast to evaluate. No
+training is required either. The downside of kNN is however that you need
+access to all "training" examples when evaluating a new sample, which can be
+impractical if the problem is complicated, and thus requires more examples.
+
+With single layer network, one does not need to store all training examples,
+only the weights need to be stored. It gives good performance on linearly
+separable problems, but it can't handle more complex problems or the
+XOR-problem.
+
+A multi-layer network gives good performance on simple and complicated
+problems, and unlike kNN, the training examples need not be stored, only
+the weights. The downside of a multi-layer is, however, that it can take
+a long time to train it.
 
 \section{Improvements}
 

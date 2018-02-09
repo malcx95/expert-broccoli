@@ -7,7 +7,7 @@
 % 3 = dot cloud 3
 % 4 = OCR data
 
-dataSetNr = 4; % Change this to load new data 
+dataSetNr = 3; % Change this to load new data 
 
 [X, D, L] = loadDataSet( dataSetNr );
 numNeurons = length(unique(L));
@@ -20,13 +20,25 @@ selectAtRandom = true; % true = select features at random, false = select the fi
 
 [ Xt, Dt, Lt ] = selectTrainingSamples(X, D, L, numSamplesPerLabelPerBin, numBins, selectAtRandom );
 
-[h, w] = size(Xt{1});
+numTrainEx = 10;
+
+Dsliced = Dt{1};
+Dsliced = Dsliced(:, 1:numTrainEx);
+
+Lsliced = Lt{1};
+Lsliced = Lsliced(1:numTrainEx, :);
+
+Xtrain = Xt{1};
+Xtrain = Xtrain(:, 1:numTrainEx);
+
+[h, w] = size(Xt{2});
+[htrain, wtrain] = size(Xtrain);
 % Note: Xt, Dt, Lt will be cell arrays, to extract a bin from them use i.e.
 % XBin1 = Xt{1};
 %% Modify the X Matrices so that a bias is added
 
 % The Training Data
-Xtraining = [ones(1, w); Xt{1}];
+Xtraining = [ones(1, wtrain); Xtrain];
 
 % The Test Data
 Xtest = [ones(1, w); Xt{2}];
@@ -35,16 +47,16 @@ Xtest = [ones(1, w); Xt{2}];
 %% Train your single layer network
 % Note: You nned to modify trainSingleLayer() in order to train the network
 
-numHidden = 100; % Change this, Number of hidde neurons 
+numHidden = 10; % Change this, Number of hidde neurons 
 numIterations = 4000; % Change this, Numner of iterations (Epochs)
-learningRate = 0.004; % Change this, Your learningrate
+learningRate = 0.002; % Change this, Your learningrate
 [xh, xw] = size(Xtraining);
 W0 = rand(numHidden, xh)*0.01; % Change this, Initiate your weight matrix W
 V0 = rand(numNeurons, numHidden)*0.01; % Change this, Initiate your weight matrix V
 
 %
 tic
-[W,V, trainingError, testError] = trainMultiLayer(Xtraining,Dt{1},Xtest,Dt{2}, W0,V0,numIterations, learningRate );
+[W,V, trainingError, testError] = trainMultiLayer(Xtraining,Dsliced,Xtest,Dt{2}, W0,V0,numIterations, learningRate );
 trainingTime = toc;
 %% Plot errors
 figure(1101)
@@ -79,7 +91,7 @@ display(['Accuracy: ' num2str(acc)])
 % Note: You do not need to change this code.
 
 if dataSetNr < 4
-    plotResultMultiLayer(W,V,Xtraining,Lt{1},LMultiLayerTraining,Xtest,Lt{2},LMultiLayerTest)
+    plotResultMultiLayer(W,V,Xtraining,Lsliced,LMultiLayerTraining,Xtest,Lt{2},LMultiLayerTest)
 else
     plotResultsOCR( Xtest, Lt{2}, LMultiLayerTest )
 end
