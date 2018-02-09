@@ -54,6 +54,11 @@ numHidden = 16
 numIterations = 1200
 learningRate = 0.004
 
+Inställningar för 4:
+numHidden = 100
+numIterations = 4000
+learningRate = 0.004
+
 \section{Overview}
 Dataset 1 can be classified using a linear classifier. However, the other datasets are not
 linearly separable.
@@ -74,7 +79,37 @@ happen to our algorithm.
 We looped for all k between 1 and 100 and checked for which values it worked best.
 
 \subsection{Backpropagation}
+\subsubsection{Single layer}
+\begin{equation}
+  \frac{\partial \epsilon}{\partial w_{ij}} =
+  \frac{\partial \epsilon}{\partial z_j}
+  \frac{\partial z_j}{\partial s_j}
+  \frac{\partial s_j}{\partial w_{ij}}
+\end{equation}
 
+where $s$ is
+
+\begin{equation}
+  s_j = \sum_{k}{w_{kj}h_k}
+\end{equation}
+
+and $z_j = \sigma(s_j)$
+
+\subsubsection{Multi layer}
+\begin{equation}
+  \frac{\partial \epsilon}{\partial w_{ij}} =
+  \frac{\partial \epsilon}{\partial z_j}
+  \frac{\partial z_j}{\partial s_j}
+  \frac{\partial s_j}{\partial w_{ij}}
+\end{equation}
+
+where $s$ is
+
+\begin{equation}
+  s_j = \sum_{k}{w_{kj}h_k}
+\end{equation}
+
+and $z_j = \sigma(s_j)$
 
 \subsection{Training}
 
