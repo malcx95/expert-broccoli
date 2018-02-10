@@ -23,6 +23,9 @@ selectAtRandom = true; % true = select features at random, false = select the fi
 
 accuracies = [];
 kr = 1:100;
+
+highestAcc = 0;
+optimalK = 1;
 for k = kr
 
     LkNN = kNN(Xt{2}, k, Xt{1}, Lt{1});
@@ -38,15 +41,35 @@ for k = kr
 
     accuracies = [accuracies; acc];
 
+    if acc > highestAcc
+        highestAcc = acc;
+        optimalK = k;
+    end
+
 end
 
 figure(1)
 plot(kr, accuracies, 'o'); title('Cross validation')
 
+optimalK
+
+% Plot with optimal k
+
+LkNN = kNN(Xt{2}, optimalK, Xt{1}, Lt{1});
+
+%% Calculate The Confusion Matrix and the Accuracy
+% Note: you have to modify the calcConfusionMatrix() function yourselfs.
+
+% The confusionMatrix
+cM = calcConfusionMatrix( LkNN, Lt{2});
+
+% The accuracy
+acc = calcAccuracy(cM)
+
 %% Plot classifications
 % Note: You do not need to change this code.
 if dataSetNr < 4
-    plotkNNResultDots(Xt{2},LkNN,k,Lt{2},Xt{1},Lt{1});
+    plotkNNResultDots(Xt{2},LkNN, optimalK,Lt{2},Xt{1},Lt{1});
 else
     plotResultsOCR( Xt{2}, Lt{2}, LkNN )
 end

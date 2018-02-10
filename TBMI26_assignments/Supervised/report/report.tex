@@ -40,24 +40,98 @@
 
 \section{Overview}
 Dataset 1 can be classified using a linear classifier. However, the
-other datasets are not linearly separable.
+other datasets are not linearly separable, so they need to be classified
+using a non-linear classifier.
 
 \section{Downsampling}
-Downsampling the data removes noise from the images which prevents the
-network from trying to learn the noise.
+Downsampling the data removes noise and distorsions from the images,
+which prevents the network from trying to learn the noise.
 
 \section{kNN}
-We used the \texttt{mink} function in matlab to find the closest k
-data points and then we use \texttt{mode} to check for the most
+The \texttt{mink} function in matlab was used to find the closest $k$
+data points and then \texttt{mode} was used to check for the most
 frequent kind.
 
-\section{Draws in kNN}
-Because \texttt{mode} returns the smallest element in a case of a tie
-that will also happen to our algorithm.
+\subsection{Draws in kNN}
+Because \texttt{mode} returns the smallest element in a case of a tie,
+that is also what happens in this algorithm.
 
-\section{Selection of best k}
-We looped for all k between 1 and 100 and checked for which values it
-worked best.
+\section{Selection of best $k$}
+For each value of $k$ between 0 and 100, the dataset was evaluated and
+accuracy calculated. The accuracies were then plotted as a function
+of $k$, and the $k$ that gave the highest accuracy was selected.
+
+\subsection{Dataset 1}
+
+Cross-validation, as shown in Figure~\ref{fig:cv1}, showed in this
+case that k = 4 was optimal, giving an accuracy of 98.5\%. 
+The result of kNN with this $k$ is shown in Figure~\ref{fig:knn1}.
+
+\begin{figure}[h!]
+    \includegraphics[width=13cm]{dataset1knncv.png}
+    \caption{kNN cross-validation of dataset 1}
+    \label{fig:cv1}
+\end{figure}
+
+\begin{figure}[h!]
+    \includegraphics[width=13cm]{dataset1knnres.png}
+    \caption{kNN result of dataset 1}
+    \label{fig:knn1}
+\end{figure}
+
+\subsection{Dataset 2}
+
+Cross-validation, as shown in Figure~\ref{fig:cv2}, showed in this
+case that k = 1 was optimal, giving an accuracy of 99.5\%. 
+The result of kNN with this $k$ is shown in Figure~\ref{fig:knn2}.
+
+\begin{figure}[h!]
+    \includegraphics[width=13cm]{dataset2knncv.png}
+    \caption{kNN cross-validation of dataset 2}
+    \label{fig:cv2}
+\end{figure}
+
+\begin{figure}[h!]
+    \includegraphics[width=13cm]{dataset2knnres.png}
+    \caption{kNN result of dataset 2}
+    \label{fig:knn2}
+\end{figure}
+
+\subsection{Dataset 3}
+
+Cross-validation, as shown in Figure~\ref{fig:cv3}, showed in this
+case that k = 1 was optimal, giving an accuracy of 100\%. 
+The result of kNN with this $k$ is shown in Figure~\ref{fig:knn3}.
+
+\begin{figure}[h!]
+    \includegraphics[width=13cm]{dataset3knncv.png}
+    \caption{kNN cross-validation of dataset 3}
+    \label{fig:cv3}
+\end{figure}
+
+\begin{figure}[h!]
+    \includegraphics[width=13cm]{dataset3knnres.png}
+    \caption{kNN result of dataset 3}
+    \label{fig:knn3}
+\end{figure}
+
+\subsection{Dataset 4}
+
+Cross-validation, as shown in Figure~\ref{fig:cv4}, showed in this
+case that k = 7 was optimal, giving an accuracy of 97.5\%. 
+The result of kNN with this $k$ is shown in Figure~\ref{fig:knn4}.
+
+\begin{figure}[h!]
+    \includegraphics[width=13cm]{dataset4knncv.png}
+    \caption{kNN Cross-validation of dataset 4}
+    \label{fig:cv4}
+\end{figure}
+
+\begin{figure}[h!]
+    \includegraphics[width=13cm]{dataset4knnres.png}
+    \caption{kNN Result of dataset 4}
+    \label{fig:knn4}
+\end{figure}
 
 \section{Backpropagation}
 
@@ -84,7 +158,7 @@ and $z_j = s_j$, since we don't use an activation function.
 The partial derivatives were evaluated to
 
 \begin{equation}
-    \frac{\partial \epsilon}{\partial z_j} = 2\sum_j(y_j - z_j)
+    \frac{\partial \epsilon}{\partial z_j} = -2(y_j - z_j)
 \end{equation}
 
 \begin{equation}
@@ -135,21 +209,26 @@ where $q_j = \sigma(a_j)$.
 
 \section{Training}
 
+This section describes the training of the neural networks, as well as the
+results of the training. The parameters were in all cases found through trial
+and error, with some guidance of the complexity of the problems and the
+plot of the test and training errors.
+
 \subsection{Dataset 1}
 
 We chose the single-layer network for dataset 1, since this is easily
 linearly separable. We used 200 iterations and a learning rate of
 0.0001. Figure~\ref{fig:res1} shows the result of this.
 
-\begin{figure}
+\begin{figure}[h!]
     \label{fig:res1}
     \includegraphics[width=13cm]{dataset1res.png}
     \caption{Results for dataset 1}
 \end{figure}
 
 \subsection{Dataset 2}
-Here we used the multi-layer network with 10 hidden neurons, 4000 iterations and a
-learning rate of 0.002. A multilayer network is required here, since the data
+Here we used a multi-layer network with 10 hidden neurons, 4000 iterations and a
+learning rate of 0.002. A multi-layer network is required here, since the data
 is not linearly separable with only 2 dimensions. Having more hidden neurons
 than input neurons increases the dimensionality of the problem, making it
 possible to separate the classes.
@@ -158,7 +237,7 @@ The exact parameters were found through trial and error. They were chosen such
 that we got high accuracy without taking too long to train.
 Figure~\ref{fig:res2} shows the result of this.
 
-\begin{figure}
+\begin{figure}[h!]
     \includegraphics[width=13cm]{dataset2res.png}
     \caption{Results for dataset 2}
     \label{fig:res2}
@@ -176,7 +255,7 @@ require a non linear classifier.
 
 Figure~\ref{fig:res3} shows the result of this.
 
-\begin{figure}
+\begin{figure}[h!]
     \includegraphics[width=13cm]{dataset3res.png}
     \caption{Results for dataset 3}
     \label{fig:res3}
@@ -192,7 +271,7 @@ a long time to train.
 
 Figure~\ref{fig:res4} shows the result of this.
 
-\begin{figure}
+\begin{figure}[h!]
     \includegraphics[width=13cm]{dataset4res.png}
     \caption{Results for dataset 4}
     \label{fig:res4}
@@ -210,19 +289,19 @@ Figure~\ref{fig:trainnongen}, where it correctly classifies the few training
 examples. However, this of course doesn't generalize well to examples it hasn't
 seen before, as shown in Figure~\ref{fig:testnongen}.
 
-\begin{figure}
+\begin{figure}[h!]
     \includegraphics[width=13cm]{errornongen.png}
     \caption{Plot of errors for non-generalizable solution}
     \label{fig:errornongen}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h!]
     \includegraphics[width=13cm]{trainingresnongen.png}
     \caption{Training results for non-generalizable solution}
     \label{fig:trainnongen}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[h!]
     \includegraphics[width=13cm]{testresnongen.png}
     \caption{Test results for non-generalizable solution}
     \label{fig:testnongen}
@@ -230,10 +309,11 @@ seen before, as shown in Figure~\ref{fig:testnongen}.
 
 \section{Discussion}
 
-kNN gives very good performance on all datasets, and is fast to evaluate. No
+kNN gives very good performance on all datasets, and is fast to evaluate with
+small datasets. No
 training is required either. The downside of kNN is however that you need
-access to all "training" examples when evaluating a new sample, which can be
-impractical if the problem is complicated, and thus requires more examples.
+access to all ``training'' examples when evaluating a new sample, which can be
+impractical if the problem requires a large number of examples.
 
 With single layer network, one does not need to store all training examples,
 only the weights need to be stored. It gives good performance on linearly
@@ -245,6 +325,15 @@ problems, and unlike kNN, the training examples need not be stored, only
 the weights. The downside of a multi-layer is, however, that it can take
 a long time to train it.
 
-\section{Improvements}
+\section{Possible improvements}
+
+One way section improve the performance and training time of the multi-layer
+network would be to introduce a momentum term 
+$\alpha\Delta w_{ij}(t - 1)$ in the gradient descent, such that the step
+length is affected by the lenght of the step before. That is, if the
+sign of the derivative is the same for some time, the step length
+increases, otherwise it decreases. This will give faster convergence
+and decrease the risk of ending up in a suboptimal local minimum of the
+cost.
 
 \end{document}
