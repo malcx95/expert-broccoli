@@ -24,13 +24,15 @@ nonfaces = double(nonfaces);
 nbrHaarFeatures = 30;
 haarFeatureMasks = GenerateHaarFeatureMasks(nbrHaarFeatures);
 
-% figure(3);
-% colormap gray;
-% for k = 1:25
-%     subplot(5,5,k),imagesc(haarFeatureMasks(:,:,k),[-1 2]);
-%     axis image;
-%     axis off;
-% end
+%%
+figure(3);
+colormap gray;
+for k = 1:25
+    subplot(5,5,k),imagesc(haarFeatureMasks(:,:,k),[-1 2]);
+    axis image;
+    axis off;
+end
+%%
 
 % Create a training data set with a number of training data examples
 % from each class. Non-faces = class label y=-1, faces = class label y=1
@@ -66,8 +68,7 @@ for i = 1:nbrBaseClassifiers
     D = D/sum(D);
 end
 
-%% Extract test data
-
+%% Extract test data 
 nbrTestExamples = 1000; 
 
 testImages  = cat(3,faces(:,:,(nbrTrainExamples+1):(nbrTrainExamples+nbrTestExamples)),...
@@ -96,14 +97,33 @@ for j = 1:nbrBaseClassifiers
 
 end
 
+Htest = StrongClassifier(xTest, Alpha(1:25), T(1:25), P(1:25), K(1:25));
+res = yTest ~= Htest;
+
+indices = find(res);
+
+someIndices = randsample(indices, 25);
+
 figure(1111)
 
+%%
 plot([1:nbrBaseClassifiers], testaccs, '-r', [1:nbrBaseClassifiers], trainaccs, '-g');
 legend('Test accuracy', 'Train accuracy')
-title('Da accs')
+title('Accuracies')
+
+figure(12312);
+colormap gray;
+i = 1;
+for k=someIndices
+    subplot(5,5,i), imagesc(testImages(:,:,k));
+    axis image;
+    axis off;
+    i = i + 1;
+end
 
 %% Plot the error of the strong classifier as  function of the number of weak classifiers.
 %  Note: you can find this error without re-training with a different
 %  number of weak classifiers.
+
 
 
