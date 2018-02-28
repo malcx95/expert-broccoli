@@ -7,12 +7,13 @@ global GWTERM;
 
 % Arrow directions
 % Change this to select arrow directions from the Q matrix.
-A = ones(GWXSIZE, GWYSIZE);
+A = ones(GWYSIZE, GWXSIZE);
 
 for x = 1:GWXSIZE
     for y = 1:GWYSIZE
         if ~GWTERM(x,y)
-            gwplotarrow([x y], A(y, x));
+            gwplotarrow([x y], chooseaction(Q, x, y, ...
+				[1 2 3 4], [1 1 1 1], 0));
         end
     end
 end
